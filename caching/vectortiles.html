@@ -1,0 +1,54 @@
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<title>Leaflet.GridLayer.Vector.Slicer demo</title>
+			<meta charset="utf-8" />
+
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+			<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+			<script src="https://unpkg.com/leaflet.vectorgrid@1.2.0"></script>
+
+			<script src="mt.js"></script>
+
+
+		</head>
+		<body style='margin:0'>
+			<div id="map" style="width: 100vw; height: 100vh"></div>
+
+			<script>
+
+				var map = L.map('map');
+		// 		var canvasRenderer = L.canvas();
+				// L.geoJson(data).addTo(map);
+
+				var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+					opacity: 1
+				})
+				//.addTo(map);
+
+
+				var vectorGrid = L.vectorGrid.slicer( data, {
+					maxZoom: 24,
+					rendererFactory: L.svg.tile,
+					vectorTileLayerStyles: {
+						sliced: function(properties, zoom) {
+							return {
+								stroke: true,
+								fill: true,
+								color: 'black',
+								opacity: 0.4,
+								weight:1,
+							}
+						}
+					},
+					interactive: false,
+				})
+				.addTo(map);
+
+				map.setView({ lat: 43.240029092457817, lng: -0.135130981465322 }, 15);
+
+
+			</script>
+		</body>
+		</html>
