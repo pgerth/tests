@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Quick Start - Leaflet</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+
+
+	
+</head>
+<body>
+
+<div id="map" style="width: 1000px; height: 600px;"></div>
+<script>
+
+	var map = L.map('map',{maxZoom:22}).setView([37.5009972,14.745846], 14);
+
+	var osm = L.tileLayer('http://localhost/catania/{z}/{x}/{y}.png', {
+    	attribution: '&copy; Local OSM'
+	}).addTo(map);
+
+	var mt = L.tileLayer('http://localhost/drawing/{z}/{x}/{y}.png', {
+    	attribution: '&copy; Monte Turcisi, DAI',
+    	maxZoom: 22
+	}).addTo(map);
+
+	var baseMaps = {
+    "OSM": osm,
+    "Monte Turcisi": mt
+	};
+
+	L.marker([37.495,14.75]).addTo(map);
+	L.control.layers(baseMaps).addTo(map);
+
+
+
+</script>
+
+
+
+</body>
+</html>
